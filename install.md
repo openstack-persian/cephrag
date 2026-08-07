@@ -109,13 +109,7 @@ command, so you'll need to know the IP address of that host.
 
 Run the `ceph bootstrap` command:
 
-<div class="prompt">
-
-bash \#
-
-cephadm bootstrap --mon-ip \<mon-ip\>
-
-</div>
+    cephadm bootstrap --mon-ip <mon-ip>
 
 This command will:
 
