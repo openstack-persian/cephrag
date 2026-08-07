@@ -58,7 +58,7 @@ In that case, you can install cephadm directly. For example:
 &nbsp;&nbsp;&nbsp;&nbsp;In Ubuntu:
 ```sh
 apt install -y cephadm
-```   
+```    
 &nbsp;&nbsp;&nbsp;&nbsp;In CentOS Stream:
 
     dnf search release-ceph
