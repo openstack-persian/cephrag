@@ -207,62 +207,32 @@ are several ways to do this:
   configuration. If `--mount <path>` is given, then the host `<path>`
   (file or directory) will appear under `/mnt` inside the container:
 
-  <div class="prompt">
-
-  bash \#
-
-  cephadm shell
-
-  </div>
+      cephadm shell
 
 - To execute `ceph` commands, you can also run commands like this:
 
-  <div class="prompt">
-
-  bash \#
-
-  cephadm shell -- ceph -s
-
-  </div>
+      cephadm shell -- ceph -s
 
 - You can install the `ceph-common` package, which contains all of the
   Ceph tools, including `ceph`, `rbd`, `mount.ceph` (for mounting CephFS
   file systems), etc.:
 
-  <div class="prompt" data-substitutions="">
-
-  bash \#
-
-  cephadm add-repo --release \|stable-release\| cephadm install
-  ceph-common
-
-  </div>
+      cephadm add-repo --release tentacle
+      cephadm add-repo --release tentacle
 
 Confirm that the `ceph` command is accessible with:
 
-<div class="prompt">
-
-bash \#
-
-ceph -v
-
-</div>
+    ceph -v
 
 Confirm that the `ceph` command can connect to the cluster and also its
 status with:
 
-<div class="prompt">
-
-bash \#
-
-ceph status
-
-</div>
+    ceph status
 
 ## Adding Hosts
 
 Add all hosts to the cluster by following the instructions in
-`cephadm-adding-hosts`.
+[Adding Hosts](https://docs.ceph.com/en/latest/cephadm/host-management/#cephadm-adding-hosts).
 
 By default, a `ceph.conf` file and a copy of the `client.admin` keyring
 are maintained in `/etc/ceph` on all hosts that have the `_admin` label.
@@ -272,13 +242,7 @@ Ceph CLI (for example, via `cephadm shell`) is easily accessible on
 multiple hosts. To add the `_admin` label to additional host(s), run a
 command of the following form:
 
-<div class="prompt">
-
-bash \#
-
-ceph orch host label add \<host\> <span id="admin">admin</span>
-
-</div>
+    ceph orch host label add \<host\> <span id="admin">admin</span>
 
 ## Adding Additional Monitors
 
@@ -287,23 +251,16 @@ different hosts. We recommend deploying five Monitors if there are five
 or more nodes in your cluster. Most clusters do not benefit from seven
 or more Monitors.
 
-Please follow `deploy_additional_monitors` to deploy additional
-Monitors.
+Please follow [Deploying additional Monitors](https://docs.ceph.com/en/latest/cephadm/services/mon/#deploy-additional-monitors)to deploy additional Monitors.
 
 ## Adding Storage
 
 To add storage to the cluster, you can tell Ceph to consume any
 available and unused device(s):
 
-<div class="prompt">
+    ceph orch apply osd --all-available-devices
 
-bash \#
-
-ceph orch apply osd --all-available-devices
-
-</div>
-
-See `cephadm-deploy-osds` for more detailed instructions.
+See [Deploy OSDs](https://docs.ceph.com/en/latest/cephadm/services/osd/#cephadm-deploy-osds) for more detailed instructions.
 
 ### Enabling OSD Memory Autotuning
 
@@ -312,44 +269,29 @@ See `cephadm-deploy-osds` for more detailed instructions.
 > with `mgr/cephadm/autotune_memory_target_ratio` set to `.7` of total
 > host memory.
 
-See `osd_autotune`.
+See [Automatically Tuning OSD Memory](https://docs.ceph.com/en/latest/cephadm/services/osd/#osd-autotune).
 
-To deploy hyperconverged Ceph with TripleO, please refer to the TripleO
-documentation: [Scenario: Deploy Hyperconverged
-Ceph](https://docs.openstack.org/project-deploy-guide/tripleo-docs/latest/features/cephadm.html#scenario-deploy-hyperconverged-ceph)
+To deploy hyperconverged Ceph with TripleO, please refer to the TripleO documentation: Scenario: Deploy Hyperconverged Ceph
 
 In other cases where the cluster hardware is not exclusively used by
 Ceph (converged infrastructure), reduce the memory consumption of Ceph
 like so:
 
-<div class="prompt">
-
-bash \#
-
-\# converged only: ceph config set mgr
-mgr/cephadm/autotune_memory_target_ratio 0.2
-
-</div>
+    ceph config set mgr mgr/cephadm/autotune_memory_target_ratio 0.2
 
 Then enable memory autotuning:
 
-<div class="prompt">
-
-bash \#
-
-ceph config set osd osd_memory_target_autotune true
-
-</div>
+    ceph config set osd osd_memory_target_autotune true
 
 ## Using Ceph
 
-To use the *Ceph Filesystem*, follow `orchestrator-cli-cephfs`.
+To use the *Ceph Filesystem*, follow [Deploy CephFS](https://docs.ceph.com/en/latest/cephadm/services/mds/#orchestrator-cli-cephfs).
 
-To use the *Ceph Object Gateway*, follow `cephadm-deploy-rgw`.
+To use the *Ceph Object Gateway*, follow [Deploy RGWs](https://docs.ceph.com/en/latest/cephadm/services/rgw/#cephadm-deploy-rgw).
 
-To use *NFS*, follow `deploy-cephadm-nfs-ganesha`.
+To use *NFS*, follow [NFS Service](https://docs.ceph.com/en/latest/cephadm/services/nfs/#deploy-cephadm-nfs-ganesha).
 
-To use *iSCSI*, follow `cephadm-iscsi`.
+To use *iSCSI*, follow [Deploying iSCSI](https://docs.ceph.com/en/latest/cephadm/services/iscsi/#cephadm-iscsi).
 
 ## Different Deployment Scenarios
 
@@ -367,8 +309,7 @@ options:
     global/osd_pool_default_size = 2
     mgr/mgr_standby_modules = False
 
-For more information on these options, see `one-node-cluster` and
-`mgr_standby_modules` in `mgr-administrator-guide`.
+For more information on these options, see [One Node Cluster](https://docs.ceph.com/en/latest/rados/troubleshooting/troubleshooting-pg/#one-node-cluster) and `mgr_standby_modules` in [ceph-mgr administrator’s guide](https://docs.ceph.com/en/latest/mgr/administrator/#mgr-administrator-guide).
 
 ### Deployment in an Isolated Environment
 
