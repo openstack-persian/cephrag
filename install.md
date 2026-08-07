@@ -80,9 +80,9 @@ In that case, you can install cephadm directly. For example:
 
         chmod +x cephadm
 
-After `chmod` has been run on cephadm, it can be run from the current directory:
+After `chmod` has been run on cephadm, move it to user binary dir
 
-    ./cephadm \<arguments...\>
+    mv cephadm /usr/bin
 
 #### Cephadm Requires Python 3.6 or Later
 
