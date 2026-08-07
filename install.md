@@ -55,18 +55,12 @@ you have an up-to-date cephadm. There are two ways to get the initial
 Some Linux distributions may already include up-to-date Ceph packages.
 In that case, you can install cephadm directly. For example:   
 
-In Ubuntu:
+&nbsp;&nbsp;&nbsp;&nbsp;In Ubuntu:
 
-```sh
-apt install -y cephadm
-```
+    apt install -y cephadm
+
 <br>
-In CentOS Stream:
-
-
-
-
-
+&nbsp;&nbsp;&nbsp;&nbsp;In CentOS Stream:
 
     dnf search release-ceph
     dnf install --assumeyes centos-release-ceph-tentacle
