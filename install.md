@@ -145,8 +145,8 @@ available options.
   public network traffic is separated from (internal to the Ceph
   cluster) cluster traffic. The internal cluster traffic handles
   replication, recovery, and heartbeats between OSD daemons. You can
-  define the `cluster
-  network<cluster-network>` by supplying the `--cluster-network` option
+  define the [cluster
+  network](https://docs.ceph.com/en/latest/rados/configuration/network-config-ref/#cluster-network) by supplying the `--cluster-network` option
   to the `bootstrap` subcommand. This parameter must be a subnet in CIDR
   notation (for example `10.90.90.0/24` or `fe80::/64`).
 
