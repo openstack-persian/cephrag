@@ -422,41 +422,30 @@ Once the CA key has been installed and marked as a trusted key, you are
 ready to use a private key/CA-signed cert combination for SSH.
 Continuing with our current example, we will create a new key pair for
 for host access and then sign it with our CA key:
+```console
+# make a new key pair
+[root@host1 ~]# ssh-keygen -t rsa -f cephadm-ssh-key -N ""
+# sign the public key. This will create a new cephadm-ssh-key-cert.pub
+# note here we're using user "root". If you'd like to use a non-root
+# user the arguments to the -I and -n params would need to be adjusted
+# Additionally, note the -V param indicates how long until the cert
+# this creates will expire
+[root@host1 ~]# ssh-keygen -s ca-key -I user_root -n root -V +52w cephadm-ssh-key.pub
+[root@host1 ~]# ls
+ca-key  ca-key.pub  cephadm-ssh-key  cephadm-ssh-key-cert.pub  cephadm-ssh-key.pub
 
-<div class="prompt" data-language="bash"
-data-prompts="[root@host1 ~]#,[root@host2 ~]#" data-modifiers="auto">
-
-\# make a new key pair \[<root@host1> ~\]# ssh-keygen -t rsa -f
-cephadm-ssh-key -N "" \# sign the public key. This will create a new
-cephadm-ssh-key-cert.pub \# note here we're using user "root". If you'd
-like to use a non-root \# user the arguments to the -I and -n params
-would need to be adjusted \# Additionally, note the -V param indicates
-how long until the cert \# this creates will expire \[<root@host1> ~\]#
-ssh-keygen -s ca-key -I user_root -n root -V +52w cephadm-ssh-key.pub
-\[<root@host1> ~\]# ls ca-key ca-key.pub cephadm-ssh-key
-cephadm-ssh-key-cert.pub cephadm-ssh-key.pub
-
-\# verify our signed key is working. To do this, make sure the generated
-private \# key ("cephadm-ssh-key" in our example) and the newly signed
-cert are stored \# in the same directory. Then try to ssh using the
-private key \[<root@host1> ~\]# ssh -i cephadm-ssh-key host2
-
-</div>
-
+# verify our signed key is working. To do this, make sure the generated private
+# key ("cephadm-ssh-key" in our example) and the newly signed cert are stored
+# in the same directory. Then try to ssh using the private key
+[root@host1 ~]# ssh -i cephadm-ssh-key host2
+```
 Once you have your private key and the corresponding CA-signed cert and
 have tested SSH authentication using that key works, you can pass those
 keys to bootstrap in order to have cephadm use them for SSHing between
 cluster hosts:
-
-<div class="prompt" data-language="bash"
-data-prompts="[root@host1 ~]#,[root@host2 ~]#" data-modifiers="auto">
-
-\[<root@host1> ~\]# cephadm bootstrap --mon-ip \<ip-addr\>
---ssh-private-key cephadm-ssh-key --ssh-signed-cert
-cephadm-ssh-key-cert.pub
-
-</div>
-
+```console
+[root@host1 ~]# cephadm bootstrap --mon-ip <ip-addr> --ssh-private-key cephadm-ssh-key --ssh-signed-cert cephadm-ssh-key-cert.pub
+```
 Note that this setup does not require installing the corresponding
 public key from the private key passed to bootstrap on other nodes. In
 fact, cephadm will reject the `--ssh-public-key` argument when passed
