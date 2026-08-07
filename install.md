@@ -84,66 +84,7 @@ After `chmod` has been run on cephadm, move it to user binary dir
 
     mv cephadm /usr/bin
 
-#### Cephadm Requires Python 3.6 or Later
-
-`cephadm` requires Python 3.6 or later. If you encounter difficulties
-running `cephadm`, then you may not have Python or the correct version
-of Python installed. This includes any errors that include the message
-`bad interpreter`.
-
-You can manually run cephadm with a particular version of Python by
-prefixing the command with your installed Python version. For example:
-
-<div class="prompt">
-
-bash \#
-
-python3.8 ./cephadm \<arguments...\>
-
-</div>
-
-#### Installing Cephadm on the Host
-
-Although the standalone `cephadm` is sufficient to bootstrap a cluster,
-it is best to have the `cephadm` command installed on the host. To
-install the packages that provide the `cephadm` command, run the
-following commands:
-
-1.  Add the repository:
-
-    <div class="prompt" data-substitutions="">
-
-    bash \#
-
-    ./cephadm add-repo --release \|stable-release\|
-
-    </div>
-
-2.  Run `cephadm install`:
-
-    <div class="prompt">
-
-    bash \#
-
-    ./cephadm install
-
-    </div>
-
-3.  Confirm that `cephadm` is now in your PATH by running `which`:
-
-    <div class="prompt">
-
-    bash \#
-
-    which cephadm
-
-    </div>
-
-    A successful `which cephadm` command will return this:
-
-    ``` bash
-    /usr/sbin/cephadm
-    ```
+---
 
 ## Bootstrap a New Cluster
 
