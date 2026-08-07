@@ -32,10 +32,8 @@ acquire an initial copy of cephadm, then the second step is to ensure
 you have an up-to-date cephadm. There are two ways to get the initial
 `cephadm`:
 
-1.  `distribution-specific installation methods<cephadm_install_distros>`
-2.  a `curl-based installation<cephadm_install_curl` method
-3.  [Go to Cephadm install section](#using-curl-to-install-cephadm)
-4.  [a curl-based installation method](### Using Curl to Install Cephadm)
+1.  [distribution-specific installation methods] (#Distribution-specific-Installations)
+3.  [a curl-based installation method](#using-curl-to-install-cephadm)
 
 > [!IMPORTANT]
 > These methods of installing `cephadm` are mutually exclusive. Choose
