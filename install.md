@@ -54,43 +54,10 @@ you have an up-to-date cephadm. There are two ways to get the initial
 
 Some Linux distributions may already include up-to-date Ceph packages.
 In that case, you can install cephadm directly. For example:
-
- In Ubuntu:
-`bash
+In Ubuntu:
+```bash
 apt install -y cephadm
-`
-> </div>
->
-> In CentOS Stream:
->
-> <div class="prompt" data-substitutions="">
->
-> bash \#
->
-> dnf search release-ceph dnf install --assumeyes
-> centos-release-ceph-\|stable-release\| dnf install --assumeyes cephadm
->
-> </div>
->
-> In Fedora:
->
-> <div class="prompt">
->
-> bash \#
->
-> dnf -y install cephadm
->
-> </div>
->
-> In SUSE:
->
-> <div class="prompt">
->
-> bash \#
->
-> zypper install -y cephadm
->
-> </div>
+```
 
 ### Using Curl to Install Cephadm
 
