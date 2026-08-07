@@ -334,10 +334,8 @@ that you have access to all hosts that you plan to add to the cluster.
 
 2.  If you are using an insecure registry, configure Podman or Docker
     with the hostname and port where the registry is running.
-
-    > [!NOTE]
-    > You must repeat this step for every host that accesses the local
-    > insecure registry.
+> [!NOTE]
+> You must repeat this step for every host that accesses the local insecure registry.
 
 3.  Push your container image to your local registry. Here are some
     acceptable kinds of container images:
