@@ -183,15 +183,14 @@ EOF
 
   example contents of a JSON file with login info:
 
-      {"url":"REGISTRY_URL", "username":"REGISTRY_USERNAME", "password":"REGISTRY_PASSWORD"}
+        {"url":"REGISTRY_URL", "username":"REGISTRY_USERNAME", "password":"REGISTRY_PASSWORD"}
 
   Cephadm will attempt to log in to this registry so it can pull your
   container and then store the login info in its config database. Other
   hosts added to the cluster will then also be able to make use of the
   authenticated container registry.
 
-- See `cephadm-deployment-scenarios` for additional examples for using
-  `cephadm bootstrap`.
+- See [Different Deployment Scenarios](#Different-Deployment-Scenarios) for additional examples for using `cephadm bootstrap`.
 
 ## Enable Ceph CLI
 
