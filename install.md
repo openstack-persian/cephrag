@@ -56,9 +56,7 @@ Some Linux distributions may already include up-to-date Ceph packages.
 In that case, you can install cephadm directly. For example:   
 
     In Ubuntu:
-```bash
-apt install -y cephadm
-```
+    apt install -y cephadm
 
 ### Using Curl to Install Cephadm
 
