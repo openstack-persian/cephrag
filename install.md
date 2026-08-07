@@ -32,7 +32,7 @@ acquire an initial copy of cephadm, then the second step is to ensure
 you have an up-to-date cephadm. There are two ways to get the initial
 `cephadm`:
 
-1.  [distribution-specific installation methods] (#Distribution-specific-Installations)
+1.  [distribution-specific installation methods](#Distribution-specific-Installations)
 3.  [a curl-based installation method](#using-curl-to-install-cephadm)
 
 > [!IMPORTANT]
