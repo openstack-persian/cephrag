@@ -363,14 +363,8 @@ EOF
     name of your container image as the argument of the `--image` flag.
     For example:
 
-    <div class="prompt">
+        cephadm --image <hostname>:5000/ceph/ceph bootstrap --mon-ip <mon-ip> --conf initial-ceph.conf
 
-    bash \#
-
-    cephadm --image \<hostname\>:5000/ceph/ceph bootstrap --mon-ip
-    \<mon-ip\> --conf initial-ceph.conf
-
-    </div>
 
 ### Deployment with Custom SSH Keys
 
@@ -381,14 +375,7 @@ To use custom SSH keys, pass the `--ssh-private-key` and
 `--ssh-public-key` fields to bootstrap. Both parameters require a path
 to the file where the keys are stored:
 
-<div class="prompt">
-
-bash \#
-
-cephadm bootstrap --mon-ip \<ip-addr\> --ssh-private-key
-\<private-key-filepath\> --ssh-public-key \<public-key-filepath\>
-
-</div>
+    cephadm bootstrap --mon-ip <ip-addr> --ssh-private-key <private-key-filepath> --ssh-public-key <public-key-filepath>
 
 This setup allows users to use a key that has already been distributed
 to hosts the user wants in the cluster before bootstrap.
