@@ -73,15 +73,9 @@ In that case, you can install cephadm directly. For example:
 
 2.  Use `curl` to fetch a build of cephadm for that release.
 
-    <div class="prompt">
-
-    bash \#
-
-    CEPH_RELEASE=18.2.0 \# replace this with the active release curl
-    --silent --remote-name --location
-    <https://download.ceph.com/rpm-$%7BCEPH_RELEASE%7D/el9/noarch/cephadm>
-
-    </div>
+        CEPH_RELEASE=18.2.0 \# replace this with the active release curl
+        --silent --remote-name --location
+        <https://download.ceph.com/rpm-$%7BCEPH_RELEASE%7D/el9/noarch/cephadm>
 
 3.  Use `chmod` to make the `cephadm` file executable:
 
