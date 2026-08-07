@@ -83,7 +83,7 @@ In that case, you can install cephadm directly. For example:
 After `chmod` has been run on cephadm, move it to user binary dir
 
     mv cephadm /usr/bin
-
+<br>
 ## Bootstrap a New Cluster
 
 ### What to Know Before You Bootstrap
