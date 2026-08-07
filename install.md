@@ -20,7 +20,7 @@ Restore](https://docs.docker.com/engine/daemon/live-restore/) for an
 optional feature that allows restarting Docker Engine without restarting
 all running containers.
 
-See the section [Compatibility With Podman Versions](#https://docs.ceph.com/en/latest/cephadm/compatibility/#compatibility-with-podman-versions) for a table of Ceph
+See the section [Compatibility With Podman Versions](https://docs.ceph.com/en/latest/cephadm/compatibility/#compatibility-with-podman-versions) for a table of Ceph
 versions that are compatible with Podman. Not every version of Podman is
 compatible with Ceph.
 
