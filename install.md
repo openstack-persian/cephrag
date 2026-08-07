@@ -329,14 +329,8 @@ that you have access to all hosts that you plan to add to the cluster.
 
 1.  Run a local container registry:
 
-    <div class="prompt">
+        podman run --privileged -d --name registry -p 5000:5000 -v /var/lib/registry:/var/lib/registry --restart=always registry:2
 
-    bash \#
-
-    podman run --privileged -d --name registry -p 5000:5000 -v
-    /var/lib/registry:/var/lib/registry --restart=always registry:2
-
-    </div>
 
 2.  If you are using an insecure registry, configure Podman or Docker
     with the hostname and port where the registry is running.
@@ -348,28 +342,24 @@ that you have access to all hosts that you plan to add to the cluster.
 3.  Push your container image to your local registry. Here are some
     acceptable kinds of container images:
 
-    - Ceph container image. See `containers`.
+    - Ceph container image. See [Ceph Container Images](https://docs.ceph.com/en/latest/install/containers/#containers).
     - Prometheus container image
     - Node Exporter container image
     - Grafana container image
     - AlertManager container image
 
 4.  Create a temporary configuration file to store the names of the
-    monitoring images (see `cephadm_monitoring-images`):
+    monitoring  images (see [Default Images](https://docs.ceph.com/en/latest/cephadm/services/monitoring/#cephadm-monitoring-images)):
 
-    <div class="prompt">
-
-    bash \$ auto
-
-    \$ cat \<\<EOF \> initial-ceph.conf \[mgr\]
-    mgr/cephadm/container_image_prometheus =
-    \<hostname\>:5000/prometheus
-    mgr/cephadm/container_image_node_exporter =
-    \<hostname\>:5000/node_exporter mgr/cephadm/container_image_grafana
-    = \<hostname\>:5000/grafana mgr/cephadm/container_image_alertmanager
-    = \<hostname\>:5000/alertmanager EOF
-
-    </div>
+```sh
+cat <<EOF > initial-ceph.conf
+[mgr]
+mgr/cephadm/container_image_prometheus = <hostname>:5000/prometheus
+mgr/cephadm/container_image_node_exporter = <hostname>:5000/node_exporter
+mgr/cephadm/container_image_grafana = <hostname>:5000/grafana
+mgr/cephadm/container_image_alertmanager = <hostname>:5000/alertmanager
+EOF
+```
 
 5.  Run bootstrap using the temporary configuration file and pass the
     name of your container image as the argument of the `--image` flag.
