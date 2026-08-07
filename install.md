@@ -396,6 +396,18 @@ would like to eventually add to the cluster. For example:
 ```sh
 `[root@host1 ~]#` ssh-keygen -t rsa -f ca-key -N ""
 ```
+```console
+[root@host1 ~]# ssh-keygen -t rsa -f ca-key -N ""
+# make the ca key trusted on the host we've generated it on
+[root@host1 ~]# cp ca-key.pub /etc/ssh
+[root@host1 ~]# vi /etc/ssh/sshd_config
+[root@host1 ~]# cat /etc/ssh/sshd_config | grep ca-key
+TrustedUserCAKeys /etc/ssh/ca-key.pub
+[root@host1 ~]# systemctl restart sshd
+```
+```shell-session
+[root@host1 ~]# ssh-keygen -t rsa -f ca-key -N ""
+```
 
 ```sh
 # we will act as our own CA, therefore we'll need to make a CA key
