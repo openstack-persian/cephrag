@@ -84,8 +84,6 @@ After `chmod` has been run on cephadm, move it to user binary dir
 
     mv cephadm /usr/bin
 
---
-
 ## Bootstrap a New Cluster
 
 ### What to Know Before You Bootstrap
