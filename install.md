@@ -165,15 +165,13 @@ available options.
   by putting them in a standard ini-style configuration file and using
   the `--config <config-file>` option. For example:
 
-  <div class="prompt">
-
-  bash \# auto
-
-  \# cat \<\<EOF \> initial-ceph.conf \[global\]
-  osd_crush_chooseleaf_type = 0 EOF \# ./cephadm bootstrap --config
-  initial-ceph.conf ...
-
-  </div>
+```sh
+cat <<EOF > initial-ceph.conf
+[global]
+osd_crush_chooseleaf_type = 0
+EOF
+./cephadm bootstrap --config initial-ceph.conf ...
+```
 
 - The `--ssh-user <user>` option makes it possible to designate which
   SSH user cephadm will use to connect to hosts. The associated SSH key
