@@ -68,7 +68,7 @@ In that case, you can install cephadm directly. For example:
 ### Using Curl to Install Cephadm
 
 1.  Determine which version of Ceph you will install. Use the releases
-    page to find the `active-releases`. For example, you might find that
+    page to find the [active-releases](https://docs.ceph.com/en/latest/releases/#active-releases). For example, you might find that
     `18.2.1` is the latest active release.
 
 2.  Use `curl` to fetch a build of cephadm for that release.
