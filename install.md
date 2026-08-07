@@ -393,44 +393,31 @@ As an alternative to standard public key authentication, cephadm also
 supports deployment using CA-signed keys. Before bootstrapping it is
 recommended to set up the CA public key as a trusted CA key on hosts you
 would like to eventually add to the cluster. For example:
-```sh
-`[root@host1 ~]#` ssh-keygen -t rsa -f ca-key -N ""
-```
+
 ```console
+# we will act as our own CA, therefore we'll need to make a CA key
 [root@host1 ~]# ssh-keygen -t rsa -f ca-key -N ""
+
 # make the ca key trusted on the host we've generated it on
+# this requires adding in a line in our /etc/sshd_config
+# to mark this key as trusted
 [root@host1 ~]# cp ca-key.pub /etc/ssh
 [root@host1 ~]# vi /etc/ssh/sshd_config
 [root@host1 ~]# cat /etc/ssh/sshd_config | grep ca-key
 TrustedUserCAKeys /etc/ssh/ca-key.pub
+# now restart sshd so it picks up the config change
 [root@host1 ~]# systemctl restart sshd
+
+# now, on all other hosts we want in the cluster, also install the CA key
+[root@host1 ~]# scp /etc/ssh/ca-key.pub host2:/etc/ssh/
+
+# on other hosts, make the same changes to the sshd_config
+[root@host2 ~]# vi /etc/ssh/sshd_config
+[root@host2 ~]# cat /etc/ssh/sshd_config | grep ca-key
+TrustedUserCAKeys /etc/ssh/ca-key.pub
+# and restart sshd so it picks up the config change
+[root@host2 ~]# systemctl restart sshd
 ```
-```shell-session
-[root@host1 ~]# ssh-keygen -t rsa -f ca-key -N ""
-```
-
-```sh
-# we will act as our own CA, therefore we'll need to make a CA key
-\[root@host1 ~]# ssh-keygen -t rsa -f ca-key -N ""
-
-\# make the ca key trusted on the host we've generated it on \# this
-requires adding in a line in our /etc/sshd_config \# to mark this key as
-trusted \[<root@host1> ~\]# cp ca-key.pub /etc/ssh \[<root@host1> ~\]#
-vi /etc/ssh/sshd_config \[<root@host1> ~\]# cat /etc/ssh/sshd_config \|
-grep ca-key TrustedUserCAKeys /etc/ssh/ca-key.pub \# now restart sshd so
-it picks up the config change \[<root@host1> ~\]# systemctl restart sshd
-
-\# now, on all other hosts we want in the cluster, also install the CA
-key \[<root@host1> ~\]# scp /etc/ssh/ca-key.pub host2:/etc/ssh/
-
-\# on other hosts, make the same changes to the sshd_config
-\[<root@host2> ~\]# vi /etc/ssh/sshd_config \[<root@host2> ~\]# cat
-/etc/ssh/sshd_config \| grep ca-key TrustedUserCAKeys
-/etc/ssh/ca-key.pub \# and restart sshd so it picks up the config change
-\[<root@host2> ~\]# systemctl restart sshd
-
-</div>
-
 Once the CA key has been installed and marked as a trusted key, you are
 ready to use a private key/CA-signed cert combination for SSH.
 Continuing with our current example, we will create a new key pair for
