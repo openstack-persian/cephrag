@@ -394,11 +394,11 @@ supports deployment using CA-signed keys. Before bootstrapping it is
 recommended to set up the CA public key as a trusted CA key on hosts you
 would like to eventually add to the cluster. For example:
 
-<div class="prompt" data-language="bash"
-data-prompts="[root@host1 ~]#,[root@host2 ~]#" data-modifiers="auto">
+`[root@host1 ~]#` `ssh-keygen -t rsa -f ca-key -N ""`
 
-\# we will act as our own CA, therefore we'll need to make a CA key
-\[<root@host1> ~\]# ssh-keygen -t rsa -f ca-key -N ""
+```sh
+# we will act as our own CA, therefore we'll need to make a CA key
+\[root@host1 ~]# ssh-keygen -t rsa -f ca-key -N ""
 
 \# make the ca key trusted on the host we've generated it on \# this
 requires adding in a line in our /etc/sshd_config \# to mark this key as
