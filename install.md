@@ -33,7 +33,8 @@ you have an up-to-date cephadm. There are two ways to get the initial
 `cephadm`:
 
 1.  `distribution-specific installation methods<cephadm_install_distros>`
-2.  a `curl-based installation<cephadm_install_curl>` method
+2.  a `curl-based installation<cephadm_install_curl` method
+3.  [a curl-based installation method](### Using Curl to Install Cephadm)
 
 > [!IMPORTANT]
 > These methods of installing `cephadm` are mutually exclusive. Choose
