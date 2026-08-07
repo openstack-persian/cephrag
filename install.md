@@ -60,8 +60,7 @@ In Ubuntu:
 ```sh
 apt install -y cephadm
 ```
-First line<br>
-
+<br>
 In CentOS Stream:
 
 
